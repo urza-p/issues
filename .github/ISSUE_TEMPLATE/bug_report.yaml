@@ -38,13 +38,13 @@ body:
         Where is the issue?
 
 - type: input
-  id: feature
+  id: title
   validations:
     required: true
   attributes:
-    label: Epic Features
+    label: Title
     description: |
-        Where is the issue?
+        What is the issue?
 
 - type: markdown
   attributes:
