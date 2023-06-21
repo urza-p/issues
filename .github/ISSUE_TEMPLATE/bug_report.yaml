@@ -114,7 +114,7 @@ body:
   id: reproduce
   attributes:
     label: How to reproduce?
-    description: Tell us how to reproduce the issue?
+    description: Tell us how to reproduce the issue!
   validations:
     required: false
 
@@ -122,8 +122,8 @@ body:
   id: expected
   attributes:
     label: Expected Behavior
-    description: What did you expect to happen?
-    placeholder: Tell us what you expected to see!
+    description: Tell us what you expected to see!
+    placeholder: 
   validations:
     required: false
 
