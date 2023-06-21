@@ -110,7 +110,7 @@ body:
     required: true
 
 - type: textarea
-  id: reproduce
+  id: how-to-reproduce
   attributes:
     label: How to reproduce?
     description: Tell us how to reproduce the issue!
@@ -118,7 +118,7 @@ body:
     required: false
 
 - type: textarea
-  id: expected
+  id: expected-behavior
   attributes:
     label: Expected Behavior
     description: Tell us what you expected to see!
