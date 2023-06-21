@@ -9,14 +9,13 @@ body:
     value: |
       - [x] Bug
 
-      Thank you for reporting a bug! Use the sections below to submit a bug. 
-
+      Thank you for reporting a bug! Use the sections below to submit a bug.  
+      
       **NOTE:**
       - All bugs are welcome to be reported.
       - Remember to include sufficient details and context.
-      - If you have multiple questions, suggestions, or bugs, please submit them in separate issues.
-
-
+      - If you have multiple questions, suggestions, or bugs, please submit them in separate issues.  
+      
       Please provide the following details about the issue you encountered.  
 
 - type: input
