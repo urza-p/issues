@@ -28,6 +28,19 @@ body:
     description: |
         Who found this issue?
 
+type: input
+  id: reported-on
+  attributes:
+    label: Reported on
+    description: |
+      When was this bug encountered on?
+    placeholder: YYYY-MM-DD
+  validations:
+    required: true
+    pattern: "^\d{4}-\d{2}-\d{2}$"
+    message: "Please enter a valid date"
+
+
 - type: input
   id: reported-on
   validations:
@@ -35,7 +48,7 @@ body:
   attributes:
     label: Reported on 
     description: |
-        When was this reported on?
+        W
 
 - type: input
   id: epic-features
@@ -100,7 +113,7 @@ body:
     description: |
         Tell us about the environment.
 
-- type: file
+- type: textarea
   id: screenshots
   attributes:
     label: Screenshot(s)
