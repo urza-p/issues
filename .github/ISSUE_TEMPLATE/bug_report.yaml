@@ -1,5 +1,7 @@
 name: Bug Report
 description: Report an anomaly or unexpected behavior.
+title: "[Bug]: "
+labels: "bug" 
 
 body:
 - type: markdown
