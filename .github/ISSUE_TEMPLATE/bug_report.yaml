@@ -10,10 +10,12 @@ body:
       - [x] Bug
 
       Thank you for reporting a bug! Use the sections below to submit a bug. 
-      
+
+      **NOTE:**
       - All bugs are welcome to be reported.
       - Remember to include sufficient details and context.
       - If you have multiple questions, suggestions, or bugs, please submit them in separate issues.
+
 
       Please provide the following details about the issue you encountered.  
 
@@ -23,30 +25,31 @@ body:
     required: true
   attributes:
     label: Logged By 
+    description: |
+        Who found this issue?
 
 - type: input
-  id: authors
+  id: feature
   validations:
     required: true
   attributes:
-    label: Author(s)
+    label: Epic Features
     description: |
-        Who wrote the sample?
-        
-        Because of the way this repository is configured, samples authors do not get a notification when you create an issue. 
-        
-        For the section above **@mention any author of the sample**. Authors' GitHub handle can be found on the main sample documentation page, under the "Solution" section. 
-        
-        Issues without an @mention will be closed automatically, as authors won't get notified.
-        
-        **NOTE:** Don't @mention the repo maintainers, they already get notified.
+        Where is the issue?
+
+- type: input
+  id: feature
+  validations:
+    required: true
+  attributes:
+    label: Epic Features
+    description: |
+        Where is the issue?
 
 - type: markdown
   attributes:
     value: |
-      Provide a clear & concise description of what the bug is. Please follow our guidance on [How To Create Good Issues](https://github.com/pnp/powerfx-samples/wiki/How-to-Create-Good-Issues) which explains how to apply formatting, adding references & resources, screenshots, etc. 
-      
-      **Do not attach ZIP files** of your code or compiled projects - instead, please publish your code to a public GitHub repo & post a link to it.
+      Now, please provide a clear & concise description of what the bug is.  
 
 - type: textarea
   id: what-happened
@@ -57,23 +60,28 @@ body:
   validations:
     required: true
 
-- type: textarea
-  id: steps
-  attributes:
-    label: Steps to reproduce
-    description: How do you reproduce this? Please provide as much step-by-step detail as possible.
-    value: |
-      1.
-      2.
-      3.
+- type: input
+  id: severity
   validations:
     required: true
+  attributes:
+    label: Severity
+    description: |
+        How severe is this issue?
+
+- type: input
+  id: Environment
+  validations:
+    required: true
+  attributes:
+    label: Environment
+    
 
 - type: textarea
   id: expected
   attributes:
-    label: Expected behavior
-    description: What did you expect to happen when the reproduce steps are followed?
+    label: Expected Behavior
+    description: What did you expect to happen?
     placeholder: Tell us what you expected to see!
   validations:
     required: true
