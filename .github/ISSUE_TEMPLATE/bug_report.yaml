@@ -60,7 +60,7 @@ body:
   validations:
     required: true
 
-- type: input
+- type: dropdown
   id: severity
   validations:
     required: true
@@ -68,6 +68,10 @@ body:
     label: Severity
     description: |
         How severe is this issue?
+    options : 
+      - High 
+      - Medium
+      - Low
 
 - type: input
   id: Environment
