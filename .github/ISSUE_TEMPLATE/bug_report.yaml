@@ -49,6 +49,17 @@ body:
         Where is the issue?
 
 - type: input
+  id: url
+  validations:
+    required: true
+  attributes:
+    label: URL, if applicable 
+    description: |
+        What is the URL of the page with the mentioned bug?
+  validations:
+    required: false
+
+- type: input
   id: title
   validations:
     required: true
@@ -96,10 +107,18 @@ body:
 - type: textarea
   id: screenshots
   attributes:
-    label: Screenshots
+    label: Screenshot(s)
     description: Show us what the issue is. Either drag and drop files here or select them.
   validations:
     required: true
+
+- type: textarea
+  id: reproduce
+  attributes:
+    label: How to reproduce?
+    description: Tell us how to reproduce the issue?
+  validations:
+    required: false
 
 - type: textarea
   id: expected
@@ -109,3 +128,12 @@ body:
     placeholder: Tell us what you expected to see!
   validations:
     required: true
+    
+- type: input
+  id: assigned-to
+  validations:
+    required: false
+  attributes:
+    label: Assigned to 
+    description: |
+        Who is this bug fix assigned to?
