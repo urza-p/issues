@@ -20,7 +20,7 @@ body:
       Please provide the following details about the issue you encountered.  
 
 - type: input
-  id: author
+  id: logged-by
   validations:
     required: true
   attributes:
@@ -31,16 +31,14 @@ body:
 - type: input
   id: reported-on
   validations:
-    required: true
+    required: false
   attributes:
     label: Reported on 
     description: |
         Where is this reported on?
-  validations:
-    required: false
 
 - type: input
-  id: feature
+  id: epic-features
   validations:
     required: true
   attributes:
@@ -51,13 +49,11 @@ body:
 - type: input
   id: url
   validations:
-    required: true
+    required: false
   attributes:
     label: URL, if applicable 
     description: |
         What is the URL of the page with the mentioned bug?
-  validations:
-    required: false
 
 - type: input
   id: title
@@ -98,7 +94,7 @@ body:
 - type: input
   id: Environment
   validations:
-    required: true
+    required: false
   attributes:
     label: Environment
     description: |
@@ -108,7 +104,7 @@ body:
   id: screenshots
   attributes:
     label: Screenshot(s)
-    description: Show us what the issue is. Either drag and drop files here or select them.
+    description: Show us what the issue is. Either select the files you want or simply drag and drop files here.
   validations:
     required: true
 
@@ -127,7 +123,7 @@ body:
     description: What did you expect to happen?
     placeholder: Tell us what you expected to see!
   validations:
-    required: true
+    required: false
     
 - type: input
   id: assigned-to
@@ -137,3 +133,13 @@ body:
     label: Assigned to 
     description: |
         Who is this bug fix assigned to?
+
+
+- type: input
+  id: status
+  validations:
+    required: false
+  attributes:
+    label: Status? 
+    description: |
+        What is the status of the bug?
