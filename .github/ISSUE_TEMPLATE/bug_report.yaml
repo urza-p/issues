@@ -18,44 +18,38 @@ body:
       <br>
       Please provide the following details about the issue you encountered.  
 
-# - type: input
-#   id: logged-by
-#   validations:
-#     required: true
-#   attributes:
-#     label: Logged By 
-#     description: |
-#         Who found this issue?
+- type: input
+  id: logged-by
+  validations:
+    required: true
+  attributes:
+    label: Logged By 
+    description: Who found this issue?
 
-# - type: input
-#   id: reported-on
-#   attributes:
-#     label: Reported on
-#     description: |
-#       When was this bug encountered on?
-#     placeholder: YYYY-MM-DD
-#   validations:
-#     required: true
-#     pattern: "^\\d{4}-\\d{2}-\\d{2}$"
-#     message: "Please enter a valid date"
+- type: input
+  id: reported-on
+  validations:
+    required: false
+  attributes:
+    label: Reported on
+    description: When was this bug encountered on?
+    placeholder: YYYY-MM-DD
 
-# - type: input
-#   id: epic-features
-#   validations:
-#     required: true
-#   attributes:
-#     label: Epic Features
-#     description: |
-#         Where is the issue?
+- type: input
+  id: epic-features
+  validations:
+    required: true
+  attributes:
+    label: Epic Features
+    description: Where is the issue?
 
-# - type: input
-#   id: url
-#   validations:
-#     required: false
-#   attributes:
-#     label: URL, if applicable 
-#     description: |
-#         What is the URL of the page with the mentioned bug?
+- type: input
+  id: url
+  validations:
+    required: false
+  attributes:
+    label: URL, if applicable 
+    description: What is the URL of the page with the mentioned bug?
 
 # - type: input
 #   id: title
@@ -73,33 +67,35 @@ body:
 
 - type: input
   id: what-happened
+  validations:
+    required: true
   attributes:
     label: What happened?
     description: Describe what went wrong.
+
+- type: dropdown
+  id: severity
   validations:
     required: true
+  attributes:
+    label: Severity
+    description: How severe is this issue?
+    options : 
+      - High 
+      - Medium
+      - Low
 
-# - type: dropdown
-#   id: severity
-#   validations:
-#     required: true
-#   attributes:
-#     label: Severity
-#     description: |
-#         How severe is this issue?
-#     options : 
-#       - High 
-#       - Medium
-#       - Low
-
-# - type: input
-#   id: Environment
-#   validations:
-#     required: false
-#   attributes:
-#     label: Environment
-#     description: |
-#         Tell us about the environment.
+- type: dropdown
+  id: environment
+  validations:
+    required: true
+  attributes:
+    label: Environment
+    description: Which environment is this issue on?
+    options : 
+      - Dev 
+      - Staging
+      - Production
 
 - type: textarea
   id: screenshots
