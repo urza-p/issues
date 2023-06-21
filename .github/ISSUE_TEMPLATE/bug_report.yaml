@@ -75,6 +75,8 @@ body:
     required: true
   attributes:
     label: Environment
+    description: |
+        Tell us about the environment.
     
 
 - type: textarea
