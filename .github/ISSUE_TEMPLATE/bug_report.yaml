@@ -35,7 +35,7 @@ body:
   attributes:
     label: Reported on 
     description: |
-        Where is this reported on?
+        When was this reported on?
 
 - type: input
   id: epic-features
