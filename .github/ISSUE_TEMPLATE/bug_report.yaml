@@ -75,8 +75,7 @@ body:
   id: what-happened
   attributes:
     label: What happened?
-    description: Describe the observed behavior.
-    placeholder: Tell us what you see!
+    description: Describe what went wrong.
   validations:
     required: true
 
