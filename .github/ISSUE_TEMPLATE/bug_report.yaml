@@ -1,6 +1,6 @@
 name: Bug Report
 description: Report an anomaly or unexpected behavior.
-title: "[Bug]: "
+title: "[Title of the Bug]: "
 labels: "bug" 
 
 body:
@@ -57,14 +57,14 @@ body:
 #     description: |
 #         What is the URL of the page with the mentioned bug?
 
-- type: input
-  id: title
-  validations:
-    required: true
-  attributes:
-    label: Title
-    description: |
-        What is the issue?
+# - type: input
+#   id: title
+#   validations:
+#     required: true
+#   attributes:
+#     label: Title
+#     description: |
+#         What is the issue?
 
 - type: markdown
   attributes:
