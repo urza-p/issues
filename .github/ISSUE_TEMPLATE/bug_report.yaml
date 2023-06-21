@@ -40,16 +40,6 @@ body:
     pattern: "^\\d{4}-\\d{2}-\\d{2}$"
     message: "Please enter a valid date"
 
-
-- type: input
-  id: reported-on
-  validations:
-    required: false
-  attributes:
-    label: Reported on 
-    description: |
-        W
-
 - type: input
   id: epic-features
   validations:
