@@ -28,7 +28,7 @@ body:
     description: |
         Who found this issue?
 
-type: input
+- type: input
   id: reported-on
   attributes:
     label: Reported on
