@@ -10,12 +10,12 @@ body:
       - [x] Bug
 
       Thank you for reporting a bug! Use the sections below to submit a bug.  
-      
+      <br>
       **NOTE:**
       - All bugs are welcome to be reported.
       - Remember to include sufficient details and context.
       - If you have multiple questions, suggestions, or bugs, please submit them in separate issues.  
-      
+      <br>
       Please provide the following details about the issue you encountered.  
 
 - type: input
