@@ -55,7 +55,7 @@ body:
   id: what-happened
   attributes:
     label: What happened?
-    description: Describe the observed behavior. Insert image if possible.
+    description: Describe the observed behavior.
     placeholder: Tell us what you see!
   validations:
     required: true
@@ -81,7 +81,14 @@ body:
     label: Environment
     description: |
         Tell us about the environment.
-    
+
+- type: textarea
+  id: screenshots
+  attributes:
+    label: Screenshots?
+    description: Show us what the issue is. Either drag and drop files here or select them.
+  validations:
+    required: true
 
 - type: textarea
   id: expected
