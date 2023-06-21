@@ -36,8 +36,8 @@ body:
     label: Reported on 
     description: |
         Where is this reported on?
-    validations:
-      required: false
+  validations:
+    required: false
 
 - type: input
   id: feature
