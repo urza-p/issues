@@ -55,7 +55,7 @@ body:
   id: what-happened
   attributes:
     label: What happened?
-    description: Describe the observed behavior
+    description: Describe the observed behavior. Insert image if possible.
     placeholder: Tell us what you see!
   validations:
     required: true
