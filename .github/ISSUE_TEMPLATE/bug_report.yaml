@@ -85,7 +85,7 @@ body:
 - type: textarea
   id: screenshots
   attributes:
-    label: Screenshots?
+    label: Screenshots
     description: Show us what the issue is. Either drag and drop files here or select them.
   validations:
     required: true
