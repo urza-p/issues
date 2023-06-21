@@ -71,7 +71,7 @@ body:
     value: |
       Now, please provide a clear & concise description of what the bug is.  
 
-- type: textarea
+- type: input
   id: what-happened
   attributes:
     label: What happened?
@@ -109,7 +109,7 @@ body:
   validations:
     required: true
 
-- type: textarea
+- type: input
   id: how-to-reproduce
   attributes:
     label: How to reproduce?
@@ -117,7 +117,7 @@ body:
   validations:
     required: false
 
-- type: textarea
+- type: input
   id: expected-behavior
   attributes:
     label: Expected Behavior
