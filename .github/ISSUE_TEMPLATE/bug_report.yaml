@@ -11,25 +11,18 @@ body:
 
       Thank you for reporting a bug! Use the sections below to submit a bug. 
       
-      - Follow our guidance on [How To Create Good Issues](https://github.com/pnp/powerfx-samples/wiki/How-to-Create-Good-Issues).
-      - All bug reports are welcome - we want to fix them!
-      - This repo is maintained by volunteers. Please be courteous and patient. 🙂
+      - All bugs are welcome to be reported.
       - Remember to include sufficient details and context.
       - If you have multiple questions, suggestions, or bugs, please submit them in separate issues.
-      - We accept pull requests. If you know how to fix it - go ahead! If you know how to make it - go ahead! If you're unsure how to do a pull request, consider signing up for a free [Sharing is Caring First-Time Contributor](http://aka.ms/sharing-is-caring#pnp-sic-first-time-contributor) session.
 
-      Please provide the following details about the issue you encountered.  *Issues that do not provide the information requested in this form will be flagged as **incomplete** & automatically closed.*
+      Please provide the following details about the issue you encountered.  
 
 - type: input
-  id: sample
+  id: author
   validations:
     required: true
   attributes:
-    label: Sample
-    description: |
-        Which sample are you having troubles with?
-        
-        Use the sample name or URL. We don't want to be spend all this time diagnosing issues about the wrong sample, do we?
+    label: Logged By 
 
 - type: input
   id: authors
