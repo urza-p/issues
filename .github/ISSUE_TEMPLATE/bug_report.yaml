@@ -29,6 +29,16 @@ body:
         Who found this issue?
 
 - type: input
+  id: reported-on
+  validations:
+    required: true
+  attributes:
+    label: Reported on 
+    description: |
+        Where is this reported on?
+    required: false
+
+- type: input
   id: feature
   validations:
     required: true
