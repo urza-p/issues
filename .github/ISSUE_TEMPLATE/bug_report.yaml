@@ -1,6 +1,6 @@
 name: Bug Report
 description: Report an anomaly or unexpected behavior.
-title: " "
+title: "[Bug: ]"
 labels: "bug" 
 
 body:
