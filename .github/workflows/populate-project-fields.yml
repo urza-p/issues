@@ -24,7 +24,7 @@ jobs:
             const fieldsToUpdate = {};
             Object.keys(customFields).forEach((customField) => {
               const fieldId = customFields[customField];
-              if (fields[fieldId] && fields[fieldId].value) {
+              if (fields && fields[fieldId] && fields[fieldId].value) {
                 fieldsToUpdate[customField] = fields[fieldId].value;
               }
             });
