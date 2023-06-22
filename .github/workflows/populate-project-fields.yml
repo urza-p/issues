@@ -1,7 +1,7 @@
 name: Populate Project Fields
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
 
 jobs:
   populate-fields:
@@ -18,16 +18,16 @@ jobs:
               'Reported on': 'reported-on',
               'Epic Features': 'epic-features',
               'URL': 'url',
+              'Severity': 'severity',
+              'Environment': 'environment'
             };
             const fieldsToUpdate = {};
-            
             Object.keys(customFields).forEach((customField) => {
-              const matchingField = fields.find((field) => field.id === customFields[customField]);
-              if (matchingField) {
-                fieldsToUpdate[customField] = matchingField.value;
+              const fieldId = customFields[customField];
+              if (fields[fieldId] && fields[fieldId].value) {
+                fieldsToUpdate[customField] = fields[fieldId].value;
               }
             });
-            
             return fieldsToUpdate;
       - name: Update project card
         uses: actions/github-script@v4
