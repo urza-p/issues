@@ -1,6 +1,5 @@
 name: Bug Report
 description: Report an anomaly or unexpected behavior.
-# title: "[Bug: ]"
 labels: "bug" 
 
 body:
@@ -51,28 +50,6 @@ body:
     label: URL, if applicable 
     description: What is the URL of the page with the mentioned bug?
 
-# - type: input
-#   id: title
-#   validations:
-#     required: true
-#   attributes:
-#     label: Title
-#     description: |
-#         What is the issue?
-
-- type: markdown
-  attributes:
-    value: |
-      Now, please provide a clear & concise description of what the bug is.  
-
-- type: input
-  id: what-happened
-  validations:
-    required: true
-  attributes:
-    label: What happened?
-    description: Describe what went wrong.
-
 - type: dropdown
   id: severity
   validations:
@@ -122,11 +99,11 @@ body:
   validations:
     required: false
 
+# Comments to store custom field values
 - type: markdown
   attributes:
     value: |
-      <!-- Hidden Custom Fields -->
-      <input type="hidden" name="issue[logged-by]" value="${inputs.logged-by}" />
-      <input type="hidden" name="issue[reported-on]" value="${inputs.reported-on}" />
-      <input type="hidden" name="issue[epic-features]" value="${inputs.epic-features}" />
-      <input type="hidden" name="issue[url]" value="${inputs.url}" />
+      <!-- Logged by: {{ github.actor }} -->
+      <!-- Reported on: {{ github.event.inputs['reported-on'] }} -->
+      <!-- Epic Features: {{ github.event.inputs['epic-features'] }} -->
+      <!-- URL: {{ github.event.inputs['url'] }} -->
