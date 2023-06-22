@@ -20,11 +20,14 @@ jobs:
               'URL': 'url',
             };
             const fieldsToUpdate = {};
+            
             Object.keys(customFields).forEach((customField) => {
-              if (fields.hasOwnProperty(customFields[customField])) {
-                fieldsToUpdate[customFields[customField]] = fields[customFields[customField]].value;
+              const matchingField = fields.find((field) => field.id === customFields[customField]);
+              if (matchingField) {
+                fieldsToUpdate[customField] = matchingField.value;
               }
             });
+            
             return fieldsToUpdate;
       - name: Update project card
         uses: actions/github-script@v4
