@@ -12,12 +12,12 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const fields = context.payload.issue.body.fields;
+            const fields = context.payload.issue.body.input_fields;
             const customFields = {};
             // Add your custom field names and issue body field names mapping here
             customFields['Logged by'] = 'logged-by';
             customFields['Reported on'] = 'reported-on';
-            customFields['Epic - Features'] = 'epic-features';
+            customFields['Epic Features'] = 'epic-features';
             customFields['URL'] = 'url';
             customFields['Severity'] = 'severity';
             customFields['Environment'] = 'environment';
@@ -51,4 +51,4 @@ jobs:
                 column_id: column.id,
                 note: JSON.stringify(fieldsToUpdate)
               });
-            });
+            }
