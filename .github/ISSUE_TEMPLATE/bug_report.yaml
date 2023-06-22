@@ -121,3 +121,25 @@ body:
     placeholder: 
   validations:
     required: false
+
+    # Custom Fields
+- type: hidden
+  id: logged-by
+  attributes:
+    value: ${inputs.logged-by}
+
+- type: hidden
+  id: reported-on
+  attributes:
+    value: ${inputs.reported-on}
+
+- type: hidden
+  id: epic-features
+  attributes:
+    value: ${inputs.epic-features}
+
+- type: hidden
+  id: url
+  attributes:
+    value: ${inputs.url}
+
