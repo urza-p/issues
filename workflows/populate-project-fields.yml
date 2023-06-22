@@ -1,48 +1,58 @@
-name: Populate Project Fields
+name: Handle Bug Report
+
 on:
   issues:
     types: [opened, edited]
 
 jobs:
-  populate-fields:
+  handle-form:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if issue has custom fields
-        id: check_fields
+      - name: Extract input values from issue body
+        id: extract-values
         uses: actions/github-script@v4
         with:
           script: |
-            const fields = context.payload.issue.fields;
-            const customFields = {};
+            const regexes = {
+              loggedBy: /Logged By\n- \[x\] (.+)/,
+              reportedOn: /Reported on\n- \[x\] (.+)/,
+              epicFeatures: /Epic Features\n- \[x\] (.+)/,
+              url: /URL, if applicable\n- \[x\] (.+)/,
+              severity: /Severity\n- \[x\] (.+)/,
+              environment: /Environment\n- \[x\] (.+)/
+            };
 
-            // Add your custom field names and issue body field names mapping here
-            customFields['Logged by'] = 'logged-by';
-            customFields['Reported on'] = 'reported-on';
-            customFields['Epic - Features'] = 'epic-features';
-            customFields['URL'] = 'url';
-            customFields['Severity'] = 'severity';
-            customFields['Environment'] = 'environment';
+            const issueBody = context.payload.issue.body;
+            const inputValues = {};
 
-            const fieldsToUpdate = {};
-
-            Object.keys(customFields).forEach((customField) => {
-              if (fields.hasOwnProperty(customFields[customField])) {
-                fieldsToUpdate[customField] = fields[customFields[customField]];
-              }
+            Object.keys(regexes).forEach((key) => {
+              const regex = regexes[key];
+              const matches = issueBody.match(regex);
+              inputValues[key] = matches ? matches[1].trim() : '';
             });
 
-            return fieldsToUpdate;
+            return inputValues;
 
-      - name: Update project card
+      - name: Update project card custom fields
         uses: actions/github-script@v4
         with:
           script: |
-            const projectNumber = 1; // Replace with your project number
-            const columnName = 'To do'; // Replace with your column name
-            const cardId = context.payload.issue.project_card.id;
-            const fieldsToUpdate = context.outputs.fieldsToUpdate;
+            const projectNumber = 123; // Replace with your project number
+            const customFieldNames = {
+              loggedBy: 'Logged by',
+              reportedOn: 'Reported on',
+              epicFeatures: 'Epic Features',
+              url: 'URL',
+              severity: 'Severity',
+              environment: 'Environment'
+            };
+            const inputValues = context.outputs.extractValues;
 
             const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+            const { data: projectCard } = await octokit.rest.projects.getCard({
+              card_id: context.payload.issue.project_card.id
+            });
+
             const { data: project } = await octokit.rest.projects.get({
               project_id: projectNumber
             });
@@ -51,14 +61,26 @@ jobs:
               project_id: projectNumber
             });
 
-            const column = columns.find((c) => c.name === columnName);
+            const column = columns.find((c) => c.name === projectCard.column_name);
 
             if (column) {
+              const updatedNote = JSON.parse(projectCard.note);
+
+              Object.keys(customFieldNames).forEach((key) => {
+                const customFieldName = customFieldNames[key];
+                const inputValue = inputValues[key];
+
+                if (inputValue) {
+                  updatedNote[customFieldName] = inputValue;
+                } else {
+                  delete updatedNote[customFieldName];
+                }
+              });
+
               await octokit.rest.projects.updateCard({
-                card_id: cardId,
+                card_id: context.payload.issue.project_card.id,
                 project_id: projectNumber,
                 column_id: column.id,
-                note: JSON.stringify(fieldsToUpdate)
+                note: JSON.stringify(updatedNote)
               });
             }
-
