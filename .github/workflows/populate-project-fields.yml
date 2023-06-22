@@ -12,9 +12,8 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const fields = context.payload.issue.fields;
+            const fields = context.payload.issue.body.fields;
             const customFields = {};
-
             // Add your custom field names and issue body field names mapping here
             customFields['Logged by'] = 'logged-by';
             customFields['Reported on'] = 'reported-on';
@@ -22,17 +21,13 @@ jobs:
             customFields['URL'] = 'url';
             customFields['Severity'] = 'severity';
             customFields['Environment'] = 'environment';
-
             const fieldsToUpdate = {};
-
             Object.keys(customFields).forEach((customField) => {
               if (fields.hasOwnProperty(customFields[customField])) {
                 fieldsToUpdate[customField] = fields[customFields[customField]];
               }
             });
-
             return fieldsToUpdate;
-
       - name: Update project card
         uses: actions/github-script@v4
         with:
@@ -41,18 +36,14 @@ jobs:
             const columnName = 'To do'; // Replace with your column name
             const cardId = context.payload.issue.project_card.id;
             const fieldsToUpdate = context.outputs.fieldsToUpdate;
-
             const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
             const { data: project } = await octokit.rest.projects.get({
               project_id: projectNumber
             });
-
             const { data: columns } = await octokit.rest.projects.listColumns({
               project_id: projectNumber
             });
-
             const column = columns.find((c) => c.name === columnName);
-
             if (column) {
               await octokit.rest.projects.updateCard({
                 card_id: cardId,
@@ -60,5 +51,4 @@ jobs:
                 column_id: column.id,
                 note: JSON.stringify(fieldsToUpdate)
               });
-            }
-
+            });
