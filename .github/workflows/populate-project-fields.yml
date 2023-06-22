@@ -45,10 +45,9 @@ jobs:
             });
             const column = columns.find((c) => c.name === columnName);
             if (column) {
-              await octokit.rest.projects.updateCard({
+              await octokit.rest.projects.moveCard({
                 card_id: cardId,
-                project_id: projectNumber,
-                column_id: column.id,
-                note: JSON.stringify(fieldsToUpdate)
+                position: 'top',
+                column_id: column.id
               });
             }
