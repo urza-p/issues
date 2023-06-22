@@ -1,7 +1,7 @@
 name: Populate Project Fields
 on:
   issues:
-    types: [opened, edited]
+    types: [opened]
 
 jobs:
   populate-fields:
@@ -13,18 +13,16 @@ jobs:
         with:
           script: |
             const fields = context.payload.issue.body.input_fields;
-            const customFields = {};
-            // Add your custom field names and issue body field names mapping here
-            customFields['Logged by'] = 'logged-by';
-            customFields['Reported on'] = 'reported-on';
-            customFields['Epic Features'] = 'epic-features';
-            customFields['URL'] = 'url';
-            customFields['Severity'] = 'severity';
-            customFields['Environment'] = 'environment';
+            const customFields = {
+              'Logged by': 'logged-by',
+              'Reported on': 'reported-on',
+              'Epic Features': 'epic-features',
+              'URL': 'url',
+            };
             const fieldsToUpdate = {};
             Object.keys(customFields).forEach((customField) => {
               if (fields.hasOwnProperty(customFields[customField])) {
-                fieldsToUpdate[customField] = fields[customFields[customField]];
+                fieldsToUpdate[customFields[customField]] = fields[customFields[customField]].value;
               }
             });
             return fieldsToUpdate;
