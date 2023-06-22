@@ -122,24 +122,11 @@ body:
   validations:
     required: false
 
-    # Custom Fields
-- type: hidden
-  id: logged-by
+- type: markdown
   attributes:
-    value: ${inputs.logged-by}
-
-- type: hidden
-  id: reported-on
-  attributes:
-    value: ${inputs.reported-on}
-
-- type: hidden
-  id: epic-features
-  attributes:
-    value: ${inputs.epic-features}
-
-- type: hidden
-  id: url
-  attributes:
-    value: ${inputs.url}
-
+    value: |
+      <!-- Hidden Custom Fields -->
+      <input type="hidden" name="issue[logged-by]" value="${inputs.logged-by}" />
+      <input type="hidden" name="issue[reported-on]" value="${inputs.reported-on}" />
+      <input type="hidden" name="issue[epic-features]" value="${inputs.epic-features}" />
+      <input type="hidden" name="issue[url]" value="${inputs.url}" />
