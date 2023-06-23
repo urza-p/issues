@@ -36,38 +36,6 @@ jobs:
           script: |
             const projectNumber = 1; // Replace with your project number
             const columnName = 'To do'; // Replace with your column name
-            const fieldsToUpdate = context.outputs.fieldsToUpdate; // Access fieldsToUpdate from the check_fields step output
+            const fieldsToUpdate = steps.check_fields.outputs.fieldsToUpdate; // Access fieldsToUpdate from the check_fields step output
             console.log(fieldsToUpdate); // Output fieldsToUpdate for debugging
             const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-            const { data: project } = await octokit.rest.projects.get({
-              project_id: projectNumber
-            });
-            const { data: columns } = await octokit.rest.projects.listColumns({
-              project_id: projectNumber
-            });
-            const column = columns.find((c) => c.name === columnName);
-            if (column) {
-              const { data: cards } = await octokit.rest.projects.listCards({
-                column_id: column.id
-              });
-              const card = cards.find((c) => c.note === fieldsToUpdate['Logged by']);
-              if (card) {
-                const { data: cardFields } = await octokit.rest.projects.listCardCustomFieldItems({
-                  card_id: card.id
-                });
-                Object.keys(fieldsToUpdate).forEach(async (field) => {
-                  const customField = cardFields.find((f) => f.name === field);
-                  if (customField) {
-                    await octokit.rest.projects.updateCustomFieldItem({
-                      custom_field_item_id: customField.id,
-                      field_name: field,
-                      value: fieldsToUpdate[field]
-                    });
-                  }
-                });
-              } else {
-                console.log('Card not found in the specified column.');
-              }
-            } else {
-              console.log('Column not found in the project.');
-            }
