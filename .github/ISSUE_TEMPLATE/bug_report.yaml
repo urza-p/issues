@@ -106,35 +106,17 @@ body:
     label: Expected Behavior
     description: Tell us what you expected to see!
 
-- type: input
+- type: hidden
   id: logged-by-hidden
-  validations:
-    required: true
   attributes:
-    label: Logged By
-    value: ""
-    default: "{{input.logged-by}}"
-    placeholder: ""
-    hidden: true
+    value: "{{input.logged-by}}"
 
-- type: input
+- type: hidden
   id: reported-on-hidden
-  validations:
-    required: false
   attributes:
-    label: Reported on
-    value: ""
-    default: "{{input.reported-on}}"
-    placeholder: ""
-    hidden: true
+    value: "{{input.reported-on}}"
 
-- type: input
+- type: hidden
   id: epic-features-hidden
-  validations:
-    required: true
   attributes:
-    label: Epic Features
-    value: ""
-    default: "{{input.epic-features}}"
-    placeholder: ""
-    hidden: true
+    value: "{{input.epic-features}}"
