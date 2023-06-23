@@ -24,6 +24,7 @@ body:
   attributes:
     label: Logged By 
     description: Who found this issue?
+    project_hidden: true
 
 - type: input
   id: reported-on
@@ -33,6 +34,7 @@ body:
     label: Reported on
     description: When was this bug encountered on?
     placeholder: YYYY-MM-DD
+    project_hidden: true
 
 - type: input
   id: epic-features
@@ -41,6 +43,7 @@ body:
   attributes:
     label: Epic Features
     description: Where is the issue?
+    project_hidden: true
 
 - type: input
   id: url
@@ -49,6 +52,15 @@ body:
   attributes:
     label: URL, if applicable 
     description: What is the URL of the page with the mentioned bug?
+    project_hidden: true
+
+- type: input
+  id: describe
+  validations:
+    required: true
+  attributes:
+    label: Description
+    description: What is the issue?
 
 - type: dropdown
   id: severity
@@ -61,6 +73,7 @@ body:
       - High 
       - Medium
       - Low
+    project_hidden: true
 
 - type: dropdown
   id: environment
@@ -73,28 +86,30 @@ body:
       - Dev 
       - Staging
       - Production
+    project_hidden: true
 
 - type: textarea
   id: screenshots
+  validations:
+    required: true
   attributes:
     label: Screenshot(s)
     description: Show us what the issue is. Either select the files you want or simply drag and drop files here.
-  validations:
-    required: true
 
 - type: input
   id: how-to-reproduce
+  validations:
+    required: false
   attributes:
     label: How to reproduce?
     description: Tell us how to reproduce the issue!
-  validations:
-    required: false
+
 
 - type: input
   id: expected-behavior
+  validations:
+    required: false
   attributes:
     label: Expected Behavior
     description: Tell us what you expected to see!
     placeholder: 
-  validations:
-    required: false
