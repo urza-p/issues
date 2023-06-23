@@ -98,7 +98,6 @@ body:
     label: How to reproduce?
     description: Tell us how to reproduce the issue!
 
-
 - type: input
   id: expected-behavior
   validations:
@@ -106,4 +105,36 @@ body:
   attributes:
     label: Expected Behavior
     description: Tell us what you expected to see!
-    placeholder: 
+
+- type: input
+  id: logged-by-hidden
+  validations:
+    required: true
+  attributes:
+    label: Logged By
+    value: ""
+    default: "{{input.logged-by}}"
+    placeholder: ""
+    hidden: true
+
+- type: input
+  id: reported-on-hidden
+  validations:
+    required: false
+  attributes:
+    label: Reported on
+    value: ""
+    default: "{{input.reported-on}}"
+    placeholder: ""
+    hidden: true
+
+- type: input
+  id: epic-features-hidden
+  validations:
+    required: true
+  attributes:
+    label: Epic Features
+    value: ""
+    default: "{{input.epic-features}}"
+    placeholder: ""
+    hidden: true
