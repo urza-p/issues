@@ -43,3 +43,4 @@ jobs:
           echo "URL: ${{ steps.extract_values.outputs['URL'] }}"
           echo "Severity: ${{ steps.extract_values.outputs['Severity'] }}"
           echo "Environment: ${{ steps.extract_values.outputs['Environment'] }}"
+          console.log('This is running')
