@@ -35,20 +35,24 @@ jobs:
           script: |
             const projectNumber = 1; // Replace with your project number
             const columnName = 'To do'; // Replace with your column name
-            const cardId = context.payload.issue.project_card.id;
-            const fieldsToUpdate = context.outputs.fieldsToUpdate;
-            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-            const { data: project } = await octokit.rest.projects.get({
-              project_id: projectNumber
-            });
-            const { data: columns } = await octokit.rest.projects.listColumns({
-              project_id: projectNumber
-            });
-            const column = columns.find((c) => c.name === columnName);
-            if (column) {
-              await octokit.rest.projects.moveCard({
-                card_id: cardId,
-                position: 'top',
-                column_id: column.id
+            const cardId = context.payload.issue.project_card?.id; // Use optional chaining to handle undefined property
+            if (cardId) {
+              const fieldsToUpdate = context.outputs.fieldsToUpdate;
+              const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+              const { data: project } = await octokit.rest.projects.get({
+                project_id: projectNumber
               });
+              const { data: columns } = await octokit.rest.projects.listColumns({
+                project_id: projectNumber
+              });
+              const column = columns.find((c) => c.name === columnName);
+              if (column) {
+                await octokit.rest.projects.moveCard({
+                  card_id: cardId,
+                  position: 'top',
+                  column_id: column.id
+                });
+              }
+            } else {
+              console.log('Project card not found.');
             }
