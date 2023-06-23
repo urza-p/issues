@@ -98,11 +98,3 @@ body:
     placeholder: 
   validations:
     required: false
-
-- type: markdown
-  attributes:
-    value: |
-      Logged by: {{ github.actor }}
-      Reported on: {{ github.event.inputs['reported-on'] }}
-      Epic Features: {{ github.event.inputs['epic-features'] }}
-      URL: {{ github.event.inputs['url'] }}
