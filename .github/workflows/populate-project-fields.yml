@@ -12,7 +12,7 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const fields = context.payload.issue.body.input_fields;
+            const fields = context.payload.issue.body;
             const customFields = {
               'Logged by': 'logged-by',
               'Reported on': 'reported-on',
@@ -24,8 +24,8 @@ jobs:
             const fieldsToUpdate = {};
             Object.keys(customFields).forEach((customField) => {
               const fieldId = customFields[customField];
-              if (fields && fields[fieldId] && fields[fieldId].value) {
-                fieldsToUpdate[customField] = fields[fieldId].value;
+              if (fields && fields[fieldId]) {
+                fieldsToUpdate[customField] = fields[fieldId];
               }
             });
             return fieldsToUpdate;
@@ -35,24 +35,37 @@ jobs:
           script: |
             const projectNumber = 1; // Replace with your project number
             const columnName = 'To do'; // Replace with your column name
-            const cardId = context.payload.issue.project_card?.id; // Use optional chaining to handle undefined property
-            if (cardId) {
-              const fieldsToUpdate = context.outputs.fieldsToUpdate;
-              const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-              const { data: project } = await octokit.rest.projects.get({
-                project_id: projectNumber
+            const fieldsToUpdate = context.outputs.fieldsToUpdate;
+            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+            const { data: project } = await octokit.rest.projects.get({
+              project_id: projectNumber
+            });
+            const { data: columns } = await octokit.rest.projects.listColumns({
+              project_id: projectNumber
+            });
+            const column = columns.find((c) => c.name === columnName);
+            if (column) {
+              const { data: cards } = await octokit.rest.projects.listCards({
+                column_id: column.id
               });
-              const { data: columns } = await octokit.rest.projects.listColumns({
-                project_id: projectNumber
-              });
-              const column = columns.find((c) => c.name === columnName);
-              if (column) {
-                await octokit.rest.projects.moveCard({
-                  card_id: cardId,
-                  position: 'top',
-                  column_id: column.id
+              const card = cards.find((c) => c.note === fieldsToUpdate['Logged by']);
+              if (card) {
+                const { data: cardFields } = await octokit.rest.projects.listCardCustomFieldItems({
+                  card_id: card.id
                 });
+                Object.keys(fieldsToUpdate).forEach(async (field) => {
+                  const customField = cardFields.find((f) => f.name === field);
+                  if (customField) {
+                    await octokit.rest.projects.updateCustomFieldItem({
+                      custom_field_item_id: customField.id,
+                      field_name: field,
+                      value: fieldsToUpdate[field]
+                    });
+                  }
+                });
+              } else {
+                console.log('Card not found in the specified column.');
               }
             } else {
-              console.log('Project card not found.');
+              console.log('Column not found in the project.');
             }
