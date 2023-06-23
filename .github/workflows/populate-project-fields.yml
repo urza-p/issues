@@ -29,6 +29,8 @@ jobs:
               }
             });
             return fieldsToUpdate;
+        env:
+          GITHUB_TOKEN: ${{ secrets.ISSUE_FORM_TOKEN }}
       - name: Update project card
         uses: actions/github-script@v4
         with:
@@ -52,7 +54,14 @@ jobs:
                   position: 'top',
                   column_id: column.id
                 });
+                await octokit.rest.projects.updateCard({
+                  card_id: cardId,
+                  project_id: projectNumber,
+                  note: JSON.stringify(fieldsToUpdate)
+                });
               }
             } else {
               console.log('Project card not found.');
             }
+        env:
+          GITHUB_TOKEN: ${{ secrets.ISSUE_FORM_TOKEN }}
