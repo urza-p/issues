@@ -53,11 +53,7 @@ jobs:
 
               const fieldId = customFields[customField];
 
-              console.log("this is field id ");
-
               console.log(fieldId);
-
-              console.log("this is field id ");
 
               if (fields && fields[fieldId] && fields[fieldId].value) {
 
