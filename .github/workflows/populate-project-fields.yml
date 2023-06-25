@@ -11,14 +11,15 @@ jobs:
     steps:
       - name: Check if issue has custom fields
         id: check_fields
-        uses: onmax/issue-form-parser@v1.4
+        uses: actions/checkout@v3
         with: 
-          issue_number: ${{ github.event.issue.number }}   
+          issue_number: ${{ github.event.issue.number || 10 }}   
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Showcasing the parsed payload data 
+        id: parse_data
         run: |
-          echo '${{ steps.parse.outputs.payload }}'
-          echo '${{ fromJson(steps.parse.outputs.payload)["Name"] }}'
+          echo '${{ toJson(steps.parse.outputs.payload) }}'
           
 
       - name: Update project card
